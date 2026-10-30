@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Opportunity Hunter</title>
+<style>
+:root{--ink:#18233b;--muted:#63708a;--blue:#3157d5;--pale:#eaf0ff;--line:#e3e8f2;--paper:#f6f8fc}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Segoe UI,Arial,sans-serif;background:var(--paper);color:var(--ink)}header{background:white;border-bottom:1px solid var(--line);padding:15px 5%;font-weight:800;font-size:20px}header span{background:var(--blue);color:white;border-radius:10px;padding:7px 10px;margin-right:9px}main{max-width:1150px;margin:25px auto;padding:0 18px}.hero{background:linear-gradient(120deg,#1f367e,#3157d5,#6687f5);color:white;padding:30px;border-radius:22px}.hero h1{font-size:clamp(28px,4vw,42px);margin:10px 0}.hero p{max-width:700px;color:#e5eaff;line-height:1.6}.notice{background:#eaf0ff;color:#24449f;border:1px solid #cbd7ff;border-radius:11px;padding:12px;margin:16px 0;font-size:13px;line-height:1.5}.layout{display:grid;grid-template-columns:285px 1fr;gap:20px}.panel,.card,.empty{background:white;border:1px solid var(--line);border-radius:16px;padding:19px;box-shadow:0 4px 18px #1a2c4a08}.panel h2,.results h2{margin:0 0 6px;font-size:18px}.muted{color:var(--muted);font-size:13px;line-height:1.5}.field{margin-top:16px}.field label{display:block;font-size:12px;font-weight:750;margin-bottom:7px}.field select,.field input[type=text]{width:100%;padding:11px;border:1px solid #d9e0ed;border-radius:9px;font:inherit}.check{display:flex!important;align-items:center;gap:8px;margin:10px 0!important;font-size:14px!important}button{border:0;border-radius:10px;padding:12px 15px;font-weight:750;cursor:pointer}.primary{background:var(--blue);color:white;width:100%;margin-top:20px}.primary:disabled{opacity:.6;cursor:wait}.secondary{background:var(--pale);color:var(--blue);width:100%;margin-top:9px}.head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:13px}.count{font-size:12px;color:var(--muted);background:white;border:1px solid var(--line);border-radius:20px;padding:8px 10px}.cards{display:grid;gap:13px}.card{padding:17px}.top,.bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.tag{background:var(--pale);color:var(--blue);padding:5px 9px;border-radius:20px;font-size:11px;font-weight:800}.intern{background:#dff7ed;color:#137452}.live{background:#e0f5e8;color:#17663f;padding:5px 8px;border-radius:20px;font-size:10px;font-weight:800}.card h3{margin:11px 0 5px;font-size:17px}.provider{font-size:12px;color:var(--muted)}.details{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}.detail{background:#f7f9fd;padding:10px;border-radius:9px;min-width:0}.detail b{display:block;font-size:10px;color:var(--muted);margin-bottom:5px;text-transform:uppercase}.detail span{font-size:12px;font-weight:700;overflow-wrap:anywhere}.card p{font-size:13px;line-height:1.5;color:#4c5871}.source{color:var(--blue);font-size:12px;font-weight:750;text-decoration:none}.empty{text-align:center;color:var(--muted);padding:32px}.toast{display:none;background:#e8f7ee;color:#17663f;padding:11px;border-radius:9px;font-size:13px;margin-bottom:12px;white-space:pre-wrap}.toast.show{display:block}.toast.error{background:#fff0ee;color:#9b2c20}footer{text-align:center;color:var(--muted);font-size:12px;margin:24px 0;line-height:1.5}@media(max-width:760px){.layout{grid-template-columns:1fr}.details{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<header><span>⌕</span>Opportunity Hunter</header><main>
+<section class="hero"><div style="font-size:12px;letter-spacing:1.5px;font-weight:800">STUDENT OPPORTUNITY FINDER</div><h1>Spend less time searching.<br>Find more possibilities.</h1><p>Explore scholarships and internships in one place. Search live webpages with TinyFish, review details, and follow original sources to verify and apply.</p></section>
+<div class="notice"><b>Live search:</b> Results come from webpages visited during your TinyFish search. Always confirm eligibility, deadlines and application details on the official source.</div>
+<div class="layout"><aside class="panel"><h2>Your preferences</h2><div class="muted">Tell TinyFish what to look for.</div>
+<div class="field"><label for="course">Course / field</label><select id="course"><option>Any field</option><option>Engineering / CSE</option><option>Science</option><option>Business</option><option>Arts / Humanities</option></select></div>
+<div class="field"><label for="year">Study level</label><select id="year"><option>Any year</option><option>1st year</option><option>2nd year</option><option>3rd year</option><option>4th year</option><option>Graduate</option></select></div>
+<div class="field"><label>Opportunity type</label><label class="check"><input type="checkbox" name="type" value="scholarship" checked> Scholarships</label><label class="check"><input type="checkbox" name="type" value="internship" checked> Internships</label></div>
+<div class="field"><label for="keyword">Keyword</label><input id="keyword" type="text" placeholder="e.g. AI, women, research"></div>
+<button class="primary" id="search">Search live opportunities</button><button class="secondary" id="reset">Reset filters</button></aside>
+<section class="results"><div id="toast" class="toast" role="status"></div><div class="head"><div><h2>Explore opportunities</h2><div class="muted" id="subtitle">No search has been run yet</div></div><span class="count" id="count">0 results</span></div><div id="cards"><div class="empty"><b>Your live results will appear here</b><br>Choose preferences and select Search live opportunities.</div></div></section></div>
+<footer>Opportunity Hunter · Live webpage research powered by TinyFish · Verify details with the original provider.</footer></main>
+<script>
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??"Not specified").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const url=v=>{try{let u=new URL(v);return ["http:","https:"].includes(u.protocol)?u.href:""}catch{return ""}};
+function message(s,error=false){$("toast").textContent=s;$("toast").className="toast show"+(error?" error":"")}
+function extract(x){if(typeof x==="string"){try{x=JSON.parse(x.replace(/```json|```/g,"").trim())}catch{return []}}if(Array.isArray(x))return x;if(x&&Array.isArray(x.opportunities))return x.opportunities;if(x&&x.result)return extract(x.result);return []}
+function render(items){
+ $("count").textContent=items.length+" live result"+(items.length===1?"":"s");
+ $("subtitle").textContent=items.length?"Returned by the latest TinyFish search":"No opportunities returned";
+ if(!items.length){$("cards").innerHTML='<div class="empty"><b>No opportunities were returned.</b><br>Try a broader keyword or another type. No sample data is displayed.</div>';return}
+ $("cards").innerHTML=items.map(o=>{
+  const typ=String(o.type||"").toLowerCase(),intern=typ.includes("intern");
+  const src=url(o.source_url||o.url||o.application_url),app=url(o.application_url||o.source_url||o.url);
+  return `<article class="card"><div class="top"><span class="tag ${intern?"intern":""}">${intern?"Internship":typ.includes("scholar")?"Scholarship":"Opportunity"}</span><span class="live">LIVE SEARCH RESULT</span></div>
+  <h3>${esc(o.name||o.title||"Untitled opportunity")}</h3><div class="provider">${esc(o.provider||"Provider not specified")}</div>
+  <div class="details"><div class="detail"><b>Deadline</b><span>${esc(o.deadline)}</span></div><div class="detail"><b>Benefit</b><span>${esc(o.benefit||o.amount||o.stipend)}</span></div><div class="detail"><b>Eligibility</b><span>${esc(o.eligibility)}</span></div></div>
+  <p>${esc(o.description||o.summary||"No description returned.")}</p><div class="bottom"><span class="muted">Confirm details before applying</span>${src?`<a class="source" href="${src}" target="_blank" rel="noopener noreferrer">Source page ↗</a>`:"<span class='muted'>Source URL not returned</span>"}${app&&app!==src?`<a class="source" href="${app}" target="_blank" rel="noopener noreferrer">Application page ↗</a>`:""}</div></article>`;
+ }).join("");
+}
+async function search(){
+ const types=[...document.querySelectorAll('input[name="type"]:checked')].map(x=>x.value);
+ if(!types.length){message("Select Scholarships, Internships, or both.",true);return}
+ $("search").disabled=true;$("search").textContent="Searching live websites…";
+ $("cards").innerHTML='<div class="empty"><b>TinyFish is searching live webpages…</b><br>This may take a little time. Keep this page open.</div>';
+ $("count").textContent="Searching";$("subtitle").textContent="Live TinyFish run in progress";$("toast").className="toast";
+ try{
+  const r=await fetch("/api/opportunities",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({course:$("course").value,year:$("year").value,types,keyword:$("keyword").value.trim()})});
+  if(!r.ok){const e=await r.json().catch(()=>({}));throw Error(e.error||"Server error "+r.status)}
+  if(!r.body)throw Error("No live stream received from server.");
+  const reader=r.body.getReader(),decoder=new TextDecoder();let buffer="",final=null,err=null,started=false;
+  while(true){const {value,done}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});const blocks=buffer.split(/\r?\n\r?\n/);buffer=blocks.pop()||"";
+   for(const b of blocks){const line=b.split(/\r?\n/).find(x=>x.startsWith("data:"));if(!line)continue;let ev;try{ev=JSON.parse(line.slice(5).trim())}catch{continue}
+    if(ev.type==="STARTED"){started=true;message("TinyFish started a live browser run…")}
+    else if(ev.type==="PROGRESS")message("TinyFish: "+(ev.purpose||"Searching webpages…"))
+    else if(ev.type==="COMPLETE"){if(ev.status==="COMPLETED")final=ev.resultJson??ev.result??null;else err=ev.error?.message||ev.error||"TinyFish could not complete this search."}
+    else if(ev.type==="ERROR")err=ev.message||"TinyFish stream error";
+   }
+  }
+  if(err)throw Error(typeof err==="string"?err:JSON.stringify(err));
+  if(final===null)throw Error(started?"Stream ended without a final result. Try once more.":"No TinyFish completion event was received.");
+  const items=extract(final);render(items);message(`Live TinyFish search completed. ${items.length} record(s) returned. Verify details on each source page.`);
+ }catch(e){$("cards").innerHTML='<div class="empty"><b>Live search could not be completed.</b><br>'+esc(e.message)+'</div>';$("count").textContent="No results";$("subtitle").textContent="TinyFish search error";message(e.message,true)}
+ finally{$("search").disabled=false;$("search").textContent="Search live opportunities"}
+}
+$("search").addEventListener("click",search);
+$("reset").addEventListener("click",()=>{$("course").selectedIndex=0;$("year").selectedIndex=0;$("keyword").value="";document.querySelectorAll('input[name="type"]').forEach(x=>x.checked=true);$("toast").className="toast";$("count").textContent="0 results";$("subtitle").textContent="No search has been run yet";$("cards").innerHTML='<div class="empty"><b>Your live results will appear here</b><br>Choose preferences and select Search live opportunities.</div>'});
+</script></body></html>

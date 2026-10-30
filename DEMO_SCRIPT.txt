@@ -1,0 +1,34 @@
+OPPORTUNITY HUNTER — 3-MINUTE HACKATHON DEMO SCRIPT
+
+Important: This is an interactive UI prototype. Cards are illustrative sample data. TinyFish is NOT connected yet; none of the results, deadlines, benefits, or eligibility statements are live or verified.
+
+1) Problem (20 sec)
+“Students often visit many websites to find scholarships and internships. Comparing eligibility, deadlines, benefits, and application links takes time, and opportunities can be missed.”
+
+2) Solution (20 sec)
+“Our project is Opportunity Hunter. Our goal is to gather opportunity information from relevant webpages using TinyFish, organize it, and let students filter results based on their study profile.”
+
+3) Show preferences (30 sec)
+“Students can select their course, year, scholarship or internship type, and a keyword such as AI or research.”
+
+4) Demonstrate the UI (40 sec)
+“Let’s select Engineering / CSE and internships, then click Search opportunities. The page filters the sample cards. These are explicitly labelled illustrative because the live TinyFish connection is still under development.”
+
+5) Explain intended architecture (40 sec)
+“In the live version, the frontend sends preferences to our Node.js and Express backend. The backend calls TinyFish using an API key stored privately in .env. TinyFish gathers information from selected public webpages. We normalize the response and display opportunity name, eligibility, deadline, benefits, and original source link.”
+
+6) Trust (20 sec)
+“We will preserve source links, flag missing or uncertain fields, and ask students to verify details on official websites. We will never present sample data as live results.”
+
+7) Close (10 sec)
+“Opportunity Hunter aims to make opportunity discovery simpler and more organized. Our next milestone is verifying the TinyFish API connection and replacing the sample cards with real, source-linked results.”
+
+Possible judge questions:
+Q: Is TinyFish connected now?
+A: “Not yet. This is an interactive frontend prototype; API integration is our next milestone.”
+Q: Are these real opportunities?
+A: “No. They are labelled illustrative sample data and must not be treated as actual offers.”
+Q: How is the API key protected?
+A: “It stays on the backend in .env, excluded from Git.”
+Q: How will you reduce misinformation?
+A: “We keep original source links, flag incomplete details, and direct users to verify on official sources.”
